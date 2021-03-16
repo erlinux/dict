@@ -1,11 +1,11 @@
 #/bin/bash
 #fuction online translate 
 t() {
-wget -qO- "http://fanyi.youdao.com/openapi.do?keyfrom=leecade&key=54015339&type=data&doctype=json&version=1.1&q=$1" | grep -oP '(?<="explains":\[")[^"]*|(?<="phonetic"\:\").*(?=\"\,"uk-phonetic")'
+  wget -qO- "http://fanyi.youdao.com/openapi.do?keyfrom=leecade&key=54015339&type=data&doctype=json&version=1.1&q=$1" | grep -oP '(?<="explains":\[")[^"]*|(?<="phonetic"\:\").*(?=\"\,"uk-phonetic")'
 }
 
 for i in {$(timeout 0.01s cat<&0),${*}}
 do
-# echo $1
-t $i | xargs -0 | sed -s 's;u2026;…;g' | grep --color=auto -P '[^\x00-\xff]+' 
+#  echo $1
+   t $i | xargs -0 | sed -s 's;u2026;…;g' | grep --color=auto -P '[^\x00-\xff]+' 
 done
